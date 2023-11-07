@@ -47,7 +47,7 @@ function generatePassword(){
     passBank = passBank.concat(upperCase);
   }
   if (passwordNum == true){
-    passBank = passBank.concat(numbers)
+    passBank = passBank.concat(numbers);
   }
 
   for (let i=0;i<passwordLength;i++){
@@ -55,5 +55,4 @@ function generatePassword(){
   }
 
   return pass;
-
 }
