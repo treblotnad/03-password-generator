@@ -22,25 +22,33 @@ function generatePassword(){
   var passwordSym = confirm("Do you want Symbols in your password?");
   var passwordUpp = confirm("Do you want capital letter in your password?");
   var passwordNum = confirm("Do you want numbers in your password?");
-  var upperCase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  var passwordLow = confirm("Do you want lower case letter in your password?");
+  var upperCase = ['A', 'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
   var lowerCase =['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-  var symbols = ['!','"','#','$','%','&',"'",'(',')','*','+',',','-', '.', '/', ':', `;`, `<`, `=`, `>`, `?`, `@`, "[", `]`, `^`, `_`, `{`, `|`, `}`, `~`];
+  var symbols = ['!','"','#','$','%','&',"'",'(',')','*','+','-', '.', '/', ':', `;`, `<`, `=`, `>`, `?`, `@`, "[", `]`, `^`, `_`, `{`, `|`, `}`, `~`];
   var numbers = ['0','1','2','3','4','5','6','7','8','9'];
-  var pass = lowerCase;
+  var passBank = "";
+  var pass ="";
 
-  if (passwordSym = 1){
-    pass = pass.concat(symbols);
+  if (passwordLow = true){
+    passBank = passBank.concat(lowerCase);
   }
-  if (passwordUpp = 1){
-    pass = pass.concat(upperCase);
+  if (passwordSym = true){
+    passBank = passBank.concat(symbols);
   }
-  if (passwordNum = 1){
-    pass = pass.concat(numbers)
+  if (passwordUpp = true){
+    passBank = passBank.concat(upperCase);
   }
-  
+  if (passwordNum = true){
+    passBank = passBank.concat(numbers)
+  }
 
-  
+  for (let i=0;i<passwordLength;i++){
+    pass = pass + passBank[Math.floor(Math.random()*passBank.length)]
+  }
 
-  return pass;
+
+
+  return upperCase[Math.floor(Math.random()*upperCase.length)];
 
 }
