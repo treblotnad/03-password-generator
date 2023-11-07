@@ -13,19 +13,21 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+//function to generate dialog and randomly generate password based on case, numeric or symbol selection.
+//selection for password length must be between 8 and 128
 function generatePassword(){
   var passwordLength = prompt("How long do you want your password?", "Pass Length");
   if (!!(passwordLength < 8 || passwordLength >128 || (passwordLength % 1) != 0)) {
-    return "Password length must be a number between 8 and 128";
+    return "Password length must be a number between 8 and 128.";
   } 
 
-  var passwordSym = confirm("Do you want Symbols in your password?");
-  var passwordUpp = confirm("Do you want capital letter in your password?");
+  var passwordSym = confirm("Do you want symbols in your password?");
+  var passwordUpp = confirm("Do you want capital letters in your password?");
   var passwordNum = confirm("Do you want numbers in your password?");
-  var passwordLow = confirm("Do you want lower case letter in your password?");
+  var passwordLow = confirm("Do you want lower case letters in your password?");
 
   if(!passwordSym && !passwordUpp && !passwordNum && !passwordLow){
-    return "Password must use at least 1 set up characters";
+    return "Password must use at least 1 set of characters.";
   } 
 
   var upperCase = ['A', 'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
@@ -51,8 +53,6 @@ function generatePassword(){
   for (let i=0;i<passwordLength;i++){
     pass = pass + passBank[Math.floor(Math.random()*passBank.length)];
   }
-
-
 
   return pass;
 
