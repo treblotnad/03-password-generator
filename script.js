@@ -54,5 +54,42 @@ function generatePassword(){
     pass = pass + passBank[Math.floor(Math.random()*passBank.length)];
   }
 
+
+  var passChar ="";
+  var lowCheck = 0;
+  var upperCheck = 0;
+  var symbolCheck = 0;
+  var numCheck = 0;
+  
+  for (let j=0; j<passwordLength;j++){
+    passChar = pass.substring(j,j+1);
+    if(lowerCase.includes(passChar)){
+      lowCheck = 1;
+    }
+    if(upperCase.includes(passChar)){
+      upperCheck = 1;
+    }
+    if(symbols.includes(passChar)){
+      symbolCheck = 1;
+    }
+    if(numbers.includes(passChar)){
+      numCheck = 1;
+    }
+  }
+
+  if (!!(passwordLow == true && lowCheck == 0)){
+    return "no low"+ pass;
+  }
+  if (!!(passwordSym == true && symbolCheck==0)){
+    return "no symbol" + pass;
+  }
+  if (!!(passwordUpp == true && upperCheck==0)){
+    return "no upper"+pass;
+  }
+  if (!!(passwordNum == true && numCheck==0)){
+    return "no num"+pass;
+  }
+  
+
   return pass;
 }
