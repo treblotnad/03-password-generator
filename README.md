@@ -21,6 +21,7 @@ THEN the password is either displayed in an alert or written to the page
 
 ## Usage
 Site has clickable button that will promt user to provide needed password length (between 8 and 128), and what type of characters are wanted in the password.
+Passwords will 'reroll' if not all selected elements are present in the first password attempt.
 
 Character types are: upper case, lower case, numbers and symbols.
 ![alt text](assets/images/deployed-screenshot-password-generator.png)

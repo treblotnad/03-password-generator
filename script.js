@@ -46,7 +46,8 @@ return randomPassGen();
 }
 
 function randomPassGen(){
-  
+  pass = "";
+  passBank = [];
 
   if (passwordLow == true){
     passBank = passBank.concat(lowerCase);
@@ -89,16 +90,16 @@ function passChecker(){
   }
 
   if (!!(passwordLow == true && lowCheck == 0)){
-    return "Not all Types Present: "+ pass;
+    return randomPassGen();
   }
   if (!!(passwordSym == true && symbolCheck==0)){
-    return "Not all Types Present: "+ pass;
+    return randomPassGen();
   }
   if (!!(passwordUpp == true && upperCheck==0)){
-    return "Not all Types Present: "+ pass;
+    return randomPassGen();
   }
   if (!!(passwordNum == true && numCheck==0)){
-    return "Not all Types Present: "+ pass;
+    return randomPassGen();
   }
   
   return pass;
