@@ -49,16 +49,16 @@ function randomPassGen(){
   pass = "";
   passBank = [];
 
-  if (passwordLow == true){
+  if (passwordLow){
     passBank = passBank.concat(lowerCase);
   }
-  if (passwordSym == true){
+  if (passwordSym){
     passBank = passBank.concat(symbols);
   }
-  if (passwordUpp == true){
+  if (passwordUpp){
     passBank = passBank.concat(upperCase);
   }
-  if (passwordNum == true){
+  if (passwordNum){
     passBank = passBank.concat(numbers);
   }
   for (let i=0;i<passwordLength;i++){
@@ -89,16 +89,16 @@ function passChecker(){
     }
   }
 
-  if (!!(passwordLow == true && lowCheck == 0)){
+  if (!!(passwordLow && lowCheck == 0)){
     return randomPassGen();
   }
-  if (!!(passwordSym == true && symbolCheck==0)){
+  if (!!(passwordSym && symbolCheck==0)){
     return randomPassGen();
   }
-  if (!!(passwordUpp == true && upperCheck==0)){
+  if (!!(passwordUpp && upperCheck==0)){
     return randomPassGen();
   }
-  if (!!(passwordNum == true && numCheck==0)){
+  if (!!(passwordNum && numCheck==0)){
     return randomPassGen();
   }
   
