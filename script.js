@@ -1,21 +1,8 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var passwordLength = "";
-var passwordSym = "";
-var passwordUpp = "";
-var passwordNum = "";
-var passwordLow = "";
-var pass ="";
-var upperCase = ['A', 'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-var lowerCase =['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-var symbols = ['!','"','#','$','%','&',"'",'(',')','*','+','-', '.', ',', '/', ':', `;`, `<`, `=`, `>`, `?`, `@`, "[", `]`, `^`, `_`, `{`, `|`, `}`, `~`];
-var numbers = ['0','1','2','3','4','5','6','7','8','9'];
-var passBank = [];
 
 // Write password to the #password input
 function writePassword() {
-  pass= "";
-  passBank = [];
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
@@ -28,79 +15,95 @@ generateBtn.addEventListener("click", writePassword);
 //function to generate dialog and randomly generate password based on case, numeric or symbol selection.
 //selection for password length must be between 8 and 128
 function generatePassword(){
-  passwordLength = prompt("How long do you want your password?", "Pass Length");
-  if (!!(passwordLength < 8 || passwordLength >128 || (passwordLength % 1) != 0)) {
+  
+  var passObj ={
+   passwordLength: "",
+    passwordSym: "",
+    passwordUpp: "",
+    passwordNum: "",
+    passworkLow: "",
+    pass:"",
+    lowerCase: ['a','b','c','d','e','f','g','h','i','j','k','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
+    upperCase: ['A', 'B','C','D','E','F','G','H','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
+    symbols: ['!','"','#','$','%','&',"'",'(',')','*','+','-', '.', ',', '/', ':', `;`, `<`, `=`, `>`, `?`, `@`, "[", `]`, `^`, `_`, `{`, `}`, `~`],
+    numbers: ['0','1','2','3','4','5','6','7','8','9'],
+    pass: "",
+    passBank:[],
+  }
+
+  passObj.passwordLength = prompt("How long do you want your password?", "Pass Length");
+  if (!!(passObj.passwordLength < 8 || passObj.passwordLength >128 || (passObj.passwordLength % 1) != 0)) {
     return "Password length must be a number between 8 and 128.";
   } 
 
-  passwordSym = confirm("Do you want symbols in your password?");
-  passwordUpp = confirm("Do you want capital letters in your password?");
-  passwordNum = confirm("Do you want numbers in your password?");
-  passwordLow = confirm("Do you want lower case letters in your password?");
+  passObj.passwordSym = confirm("Click OK for symbols in your password");
+  passObj.passwordUpp = confirm("Click OK for capital letters in your password");
+  passObj.passwordNum = confirm("Click OK for numbers in your password");
+  passObj.passwordLow = confirm("Click OK for lower case letters in your password");
 
-  if(!passwordSym && !passwordUpp && !passwordNum && !passwordLow){
+  if(!passObj.passwordSym && !passObj.passwordUpp && !passObj.passwordNum && !passObj.passwordLow){
     return "Password must use at least 1 set of characters.";
   } 
 
-return randomPassGen();
+return randomPassGen(passObj);
 }
 
-function randomPassGen(){
-  pass = "";
-  passBank = [];
+function randomPassGen(passObj){
+  passObj.pass = "";
+  passObj.passBank = [];
 
-  if (passwordLow){
-    passBank = passBank.concat(lowerCase);
+  if (passObj.passwordLow){
+    passObj.passBank = passObj.passBank.concat(passObj.lowerCase);
   }
-  if (passwordSym){
-    passBank = passBank.concat(symbols);
+  if (passObj.passwordSym){
+    passObj.passBank = passObj.passBank.concat(passObj.symbols);
   }
-  if (passwordUpp){
-    passBank = passBank.concat(upperCase);
+  if (passObj.passwordUpp){
+    passObj.passBank = passObj.passBank.concat(passObj.upperCase);
   }
-  if (passwordNum){
-    passBank = passBank.concat(numbers);
+  if (passObj.passwordNum){
+    passObj.passBank = passObj.passBank.concat(passObj.numbers);
   }
-  for (let i=0;i<passwordLength;i++){
-    pass = pass + passBank[Math.floor(Math.random()*passBank.length)];
+  for (let i=0;i<passObj.passwordLength;i++){
+    passObj.pass = passObj.pass + passObj.passBank[Math.floor(Math.random()*passObj.passBank.length)];
   }
-  return passChecker();
+  return passChecker(passObj);
 }
-function passChecker(){
+function passChecker(passObj){
   var passChar ="";
   var lowCheck = 0;
   var upperCheck = 0;
   var symbolCheck = 0;
   var numCheck = 0;
   
-  for (let j=0; j<passwordLength;j++){
-    passChar = pass.substring(j,j+1);
-    if(lowerCase.includes(passChar)){
+  for (let j=0; j<passObj.passwordLength;j++){
+    passChar = passObj.pass.substring(j,j+1);
+    if(passObj.lowerCase.includes(passChar)){
       lowCheck = 1;
     }
-    if(upperCase.includes(passChar)){
+    if(passObj.upperCase.includes(passChar)){
       upperCheck = 1;
     }
-    if(symbols.includes(passChar)){
+    if(passObj.symbols.includes(passChar)){
       symbolCheck = 1;
     }
-    if(numbers.includes(passChar)){
+    if(passObj.numbers.includes(passChar)){
       numCheck = 1;
     }
   }
 
-  if (!!(passwordLow && lowCheck == 0)){
-    return randomPassGen();
+  if (!!(passObj.passwordLow && lowCheck == 0)){
+    return randomPassGen(passObj);
   }
-  if (!!(passwordSym && symbolCheck==0)){
-    return randomPassGen();
+  if (!!(passObj.passwordSym && symbolCheck==0)){
+    return randomPassGen(passObj);
   }
-  if (!!(passwordUpp && upperCheck==0)){
-    return randomPassGen();
+  if (!!(passObj.passwordUpp && upperCheck==0)){
+    return randomPassGen(passObj);
   }
-  if (!!(passwordNum && numCheck==0)){
-    return randomPassGen();
+  if (!!(passObj.passwordNum && numCheck==0)){
+    return randomPassGen(passObj);
   }
   
-  return pass;
+  return passObj.pass;
 }
